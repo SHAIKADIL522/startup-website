@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Startup Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* ===== 1. STICKY NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #e63946;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a2e;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #e63946;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #e63946;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ===== 2. INTRO / HERO SECTION ===== */
+    .intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 100px 60px;
+      min-height: 520px;
+      background: #f8f9fa;
+      gap: 60px;
+    }
+
+    .intro-content {
+      flex: 1;
+      max-width: 520px;
+    }
+
+    .intro-content h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .intro-content h1 span {
+      color: #e63946;
+    }
+
+    .intro-content p {
+      font-size: 15px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #e63946;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #c1121f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.35);
+    }
+
+    .intro-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro-image img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    /* placeholder card if image is missing */
+    .img-placeholder {
+      width: 100%;
+      max-width: 420px;
+      height: 380px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .img-placeholder .avatar-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #e63946;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: 18px;
+    }
+
+    .img-placeholder p {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .img-placeholder small {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* ===== 3. CONTACT US SECTION ===== */
+    .contact {
+      padding: 100px 60px;
+      background: #ffffff;
+    }
+
+    .contact-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 15px;
+      color: #777;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #1a1a2e;
+      background: #f4f5f7;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 13px 16px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      outline: none; /* no blue outline on focus */
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #e63946;
+      background: #fff;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #aaa;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23777' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      align-self: center;
+      margin-top: 8px;
+    }
+
+    /* ===== 4. TABLE SECTION ===== */
+    .table-section {
+      padding: 100px 60px;
+      background: #f8f9fa;
+    }
+
+    .table-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .table-wrapper .section-title {
+      margin-bottom: 12px;
+    }
+
+    .table-wrapper .section-subtitle {
+      margin-bottom: 48px;
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .styled-table thead {
+      background: #1a1a2e;
+    }
+
+    .styled-table thead th {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 18px 20px;
+      text-align: left;
+      border: none;
+    }
+
+    .styled-table tbody tr {
+      background: #fff;
+      transition: background 0.2s ease;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .styled-table tbody tr:hover {
+      background: #fff0f1;
+    }
+
+    .styled-table tbody td {
+      padding: 16px 20px;
+      font-size: 14px;
+      color: #444;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-weight: 400;
+    }
+
+    .styled-table tbody td:first-child {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    /* badge / status styling */
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .badge-active {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .badge-pending {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .badge-inactive {
+      background: #fce4ec;
+      color: #c62828;
+    }
+
+    /* tfoot styles */
+    .styled-table tfoot {
+      background: #1a1a2e;
+    }
+
+    .styled-table tfoot td {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 16px 20px;
+      text-align: left;
+      border: none;
+      letter-spacing: 0.3px;
+    }
+
+    .styled-table tfoot td:last-child {
+      text-align: right;
+      color: #e63946;
+      font-size: 15px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: #aaa;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    footer span {
+      color: #e63946;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ========== 1. STICKY NAVBAR ========== -->
+<nav>
+  <a href="#" class="logo">Start<span>Up</span></a>
+  <ul class="nav-links">
+    <li><a href="#intro">Home</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+    <li><a href="#table">Table</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+</nav>
+
+<!-- ========== 2. INTRO SECTION ========== -->
+<section class="intro" id="intro">
+  <div class="intro-content">
+    <h1>Build Something <span>Amazing</span> Together</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+    <button class="btn-primary">Get Started</button>
+  </div>
+
+  <div class="intro-image">
+    <img src="jeff-bezos.jpg" alt="Jeff Bezos" />
+  </div>
+</section>
+
+<!-- ========== 3. CONTACT US SECTION ========== -->
+<section class="contact" id="contact">
+  <div class="contact-wrapper">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">We'd love to hear from you. Send us a message!</p>
+
+    <form class="contact-form" onsubmit="event.preventDefault()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" placeholder="John" />
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" placeholder="Doe" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="" disabled selected>Select a subject</option>
+          <option value="general">General Inquiry</option>
+          <option value="support">Support</option>
+          <option value="sales">Sales</option>
+          <option value="partnership">Partnership</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Write your message here..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary btn-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ========== 4. TABLE SECTION ========== -->
+<section class="table-section" id="table">
+  <div class="table-wrapper">
+    <h2 class="section-title">Project Overview</h2>
+    <p class="section-subtitle">A summary of current project statuses and details</p>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Manager</th>
+          <th>Status</th>
+          <th>Budget</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Website Redesign</td>
+          <td>Alice Martin</td>
+          <td><span class="badge badge-active">Active</span></td>
+          <td>$12,500</td>
+        </tr>
+        <tr>
+          <td>Mobile App v2</td>
+          <td>Bob Smith</td>
+          <td><span class="badge badge-pending">Pending</span></td>
+          <td>$28,000</td>
+        </tr>
+        <tr>
+          <td>API Integration</td>
+          <td>Carol White</td>
+          <td><span class="badge badge-active">Active</span></td>
+          <td>$8,750</td>
+        </tr>
+        <tr>
+          <td>Data Migration</td>
+          <td>David Lee</td>
+          <td><span class="badge badge-inactive">Inactive</span></td>
+          <td>$15,200</td>
+        </tr>
+        <tr>
+          <td>UI Component Library</td>
+          <td>Eva Green</td>
+          <td><span class="badge badge-pending">Pending</span></td>
+          <td>$9,400</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total Budget</td>
+          <td>$73,850</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  &copy; 2025 <span>StartUp</span>. All rights reserved.
+</footer>
+
+</body>
+</html>
